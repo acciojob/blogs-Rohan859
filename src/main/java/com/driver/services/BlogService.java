@@ -37,41 +37,12 @@ public class BlogService {
 
     public void deleteBlog(int blogId)
     {
-         final String JDBC_URL = "jdbc:mysql://localhost:3306/blogs?createTableIfNotExists=true";
-         final String JDBC_USER = "root";
-         final String JDBC_PASSWORD = "Kan@2911";
-        //delete blog and corresponding images
-        try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
+         Blog blog=blogRepository1.findById(blogId).orElse(null);
+         if(blog==null)
+         {
+             return;
+         }
 
-            // Delete blog and corresponding images
-            String deleteBlogQuery = "DELETE FROM blogs WHERE blog_id = ?";
-            String deleteImagesQuery = "DELETE FROM images WHERE blog_id = ?";
-
-            try (PreparedStatement deleteBlogStatement = connection.prepareStatement(deleteBlogQuery);
-                 PreparedStatement deleteImagesStatement = connection.prepareStatement(deleteImagesQuery)) {
-
-                // Set parameters
-                deleteBlogStatement.setInt(1, blogId);
-                deleteImagesStatement.setInt(1, blogId);
-
-                // Execute deletion queries
-                int blogDeletionResult = deleteBlogStatement.executeUpdate();
-                int imagesDeletionResult = deleteImagesStatement.executeUpdate();
-
-                if (blogDeletionResult > 0) {
-                    System.out.println("Blog with ID " + blogId + " deleted successfully");
-                } else {
-                    System.out.println("Blog with ID " + blogId + " not found");
-                }
-
-                System.out.println(imagesDeletionResult + " images deleted");
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        blogRepository1.deleteById(blogId);
     }
 }

@@ -24,28 +24,14 @@ public class UserService {
         return user;
     }
 
-    public void deleteUser(int userId){
-
-         final String JDBC_URL = "jdbc:mysql://localhost:3306/blogs?createTableIfNotExists=true";
-         final String USERNAME = "root";
-        final String PASSWORD = "Kan@2911";
-        try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD)) {
-            String sql = "DELETE FROM your_user_table WHERE user_id = ?";
-
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setInt(1, userId);
-
-                int rowsAffected = preparedStatement.executeUpdate();
-
-                if (rowsAffected > 0) {
-                    System.out.println("User with ID " + userId + " deleted successfully.");
-                } else {
-                    System.out.println("User with ID " + userId + " not found.");
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace(); // Handle the exception according to your needs
+    public void deleteUser(int userId)
+    {
+        User user=userRepository3.findById(userId).orElse(null);
+        if(user==null)
+        {
+            return;
         }
+        userRepository3.deleteById(userId);
     }
 
     public User updateUser(Integer id, String password)
