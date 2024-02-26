@@ -15,6 +15,7 @@ public class UserService {
 
     public User createUser(String username, String password){
 
+        return new User();
 
     }
 
@@ -23,6 +24,7 @@ public class UserService {
     }
 
     public User updateUser(Integer id, String password){
+        return new User();
 
     }
 }

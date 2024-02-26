@@ -17,7 +17,7 @@ public class ImageService {
 
     public Image addImage(Integer blogId, String description, String dimensions){
         //add an image to the blog
-
+        return new Image();
     }
 
     public void deleteImage(Integer id){
@@ -26,6 +26,6 @@ public class ImageService {
 
     public int countImagesInScreen(Integer id, String screenDimensions) {
         //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
-
+    return 0;
     }
 }
