@@ -1,8 +1,5 @@
 package com.driver.models;
 
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
-
-import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
