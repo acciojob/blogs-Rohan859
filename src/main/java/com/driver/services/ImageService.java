@@ -44,7 +44,7 @@ public class ImageService {
             return 0;
         }
 
-        String  arr[]=(image.getDimension().split("X",2));
+        String  arr[]=(image.getDimensions().split("X",2));
 
 
         String  arr2[]=(screenDimensions.split("X",2));

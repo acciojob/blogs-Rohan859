@@ -21,7 +21,7 @@ public class Blog {
     @ManyToOne
     User user;
 
-    Date pub;
+    Date pubDate;
 
     @OneToMany
     List<Image>imageList=new ArrayList<>();
@@ -67,12 +67,12 @@ public class Blog {
         this.user = user;
     }
 
-    public Date getPub() {
-        return pub;
+    public Date getPubDate() {
+        return pubDate;
     }
 
-    public void setPub(Date pub) {
-        this.pub = pub;
+    public void setPubDate(Date pub) {
+        this.pubDate = pub;
     }
 
     public List<Image> getImageList() {

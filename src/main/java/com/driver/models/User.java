@@ -12,7 +12,7 @@ public class User
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private String userName;
+    private String username;
     private String password;
 
     @OneToMany
@@ -27,7 +27,7 @@ public class User
     }
 
     public User(String userName, String password) {
-        this.userName = userName;
+        this.username = userName;
         this.password = password;
     }
 
@@ -39,12 +39,12 @@ public class User
         this.blogList = blogList;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String userName) {
+        this.username = userName;
     }
 
     public String getPassword() {
@@ -67,7 +67,7 @@ public class User
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", userName='" + userName + '\'' +
+                ", userName='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", blogList=" + blogList +
                 '}';
