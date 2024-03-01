@@ -5,23 +5,21 @@ import javax.persistence.*;
 @Entity
 public class Image
 {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
-
+    @JoinColumn
     @ManyToOne
     Blog blog;
+    String description;
+    String dimension;
 
-    private String description;
-    private String dimensions;
+    public Image(){
 
-    public Image() {
     }
-
-    public Image(String description, String dimension) {
+    public Image( String description, String dimension) {
         this.description = description;
-        this.dimensions = dimension;
+        this.dimension = dimension;
     }
 
     public int getId() {
@@ -49,10 +47,59 @@ public class Image
     }
 
     public String getDimensions() {
-        return dimensions;
+        return dimension;
     }
 
     public void setDimensions(String dimension) {
-        this.dimensions = dimension;
+        this.dimension = dimension;
     }
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    int id;
+//
+//    @ManyToOne
+//    Blog blog;
+//
+//    private String description;
+//    private String dimensions;
+//
+//    public Image() {
+//    }
+//
+//    public Image(String description, String dimension) {
+//        this.description = description;
+//        this.dimensions = dimension;
+//    }
+//
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
+//
+//    public Blog getBlog() {
+//        return blog;
+//    }
+//
+//    public void setBlog(Blog blog) {
+//        this.blog = blog;
+//    }
+//
+//    public String getDescription() {
+//        return description;
+//    }
+//
+//    public void setDescription(String description) {
+//        this.description = description;
+//    }
+//
+//    public String getDimensions() {
+//        return dimensions;
+//    }
+//
+//    public void setDimensions(String dimension) {
+//        this.dimensions = dimension;
+//    }
 }
