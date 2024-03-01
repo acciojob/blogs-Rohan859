@@ -1,10 +1,16 @@
 package com.driver.services;
 
 import com.driver.models.Blog;
+import com.driver.models.User;
 import com.driver.repositories.BlogRepository;
 import com.driver.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Date;
+import java.util.List;
 
 
 @Service
@@ -15,22 +21,27 @@ public class BlogService {
     @Autowired
     UserRepository userRepository1;
 
-    public Blog createAndReturnBlog(Integer userId, String title, String content)
+    public void createBlog(Integer userId , String title,String content)
     {
-        //create a blog at the current time
-        Blog blog=new Blog(userId,title,content);
+        Blog blog=new Blog(title,content);
+
+        User user=userRepository1.findById(userId).get();
+
+        blog.setUser(user);
+
+        blog.setPub(new Date());
+
+        List<Blog>blogs=user.getBlogList();
+        blogs.add(blog);
+
         blogRepository1.save(blog);
-        return blog;
+        userRepository1.save(user);
     }
+
 
     public void deleteBlog(int blogId)
     {
-         Blog blog=blogRepository1.findById(blogId).orElse(null);
-         if(blog==null)
-         {
-             return;
-         }
-
         blogRepository1.deleteById(blogId);
     }
+
 }

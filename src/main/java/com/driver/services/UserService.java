@@ -1,44 +1,40 @@
 package com.driver.services;
 
-import com.driver.models.*;
+import com.driver.models.User;
 import com.driver.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
-
+import java.util.Optional;
 
 @Service
 public class UserService {
+
     @Autowired
-    UserRepository userRepository3;
+    private UserRepository userRepository;
 
-    public User createUser(String username, String password){
-
+    public void createUser(String username,String password)
+    {
         User user=new User(username,password);
-        userRepository3.save(user);
-        return user;
+        userRepository.save(user);
     }
 
-    public void deleteUser(int userId)
+    public void updateUser(Integer id, String password)
     {
-        User user=userRepository3.findById(userId).orElse(null);
+        User user=userRepository.findById(id).get();
         if(user==null)
         {
             return;
         }
-        userRepository3.deleteById(userId);
+        user.setPassword(password);
+
+        userRepository.save(user);
     }
 
-    public User updateUser(Integer id, String password)
+    public void deleteUser(int userId)
     {
-        User existingUser=userRepository3.findById(id).orElse(null);
-
-        if(existingUser!=null)
-        {
-            existingUser.setPassword(password);
-            userRepository3.save(existingUser);
-            return existingUser;
-        }
-        return null;
+        userRepository.deleteById(userId);
     }
 }

@@ -1,32 +1,46 @@
 package com.driver.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Entity
-public class Blog
-{
+
+
+public class Blog {
+
     @Id
-    private Integer userId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+
     private String title;
     private String content;
+
+    @ManyToOne
+    User user;
+
+    Date pub;
+
+    @OneToMany
+    List<Image>imageList=new ArrayList<>();
+
 
     public Blog() {
     }
 
-    public Blog(Integer userId, String title, String content) {
-        this.userId = userId;
+    public Blog(String title, String content) {
         this.title = title;
         this.content = content;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public int getId() {
+        return id;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -43,5 +57,29 @@ public class Blog
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Date getPub() {
+        return pub;
+    }
+
+    public void setPub(Date pub) {
+        this.pub = pub;
+    }
+
+    public List<Image> getImageList() {
+        return imageList;
+    }
+
+    public void setImageList(List<Image> imageList) {
+        this.imageList = imageList;
     }
 }
